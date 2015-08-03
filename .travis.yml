@@ -16,4 +16,7 @@ deploy:
     rvm: 2.2.0
     run:
     - rake db:migrate
-    - restart
+    # - restart
+after_success:
+  - bundle exec cap production deploy
+  - bundle exec cap production deploy:restart
