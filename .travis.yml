@@ -15,10 +15,9 @@ deploy:
     all_branches: true
     rvm: 2.2.0
     buildpack: ruby
-    run:
-      - "rake db:migrate"
-      - restart
+    run: "rake db:migrate"
+      # - restart
     # - restart
-after_success:
-  - bundle exec cap production deploy
-  - bundle exec cap production deploy:restart
+# after_success:
+#   - bundle exec cap production deploy
+#   - bundle exec cap production deploy:restart
