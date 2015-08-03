@@ -11,13 +11,13 @@ deploy:
   api_key:
     secure: a6VvkMJmctcGEdFkbZBKQ8FU2RJBX8p5ts6ugYFjBpwzto7R2UMUpK+sp/9I9TCUG4IsTIvu5v1giuE6pflfCqzLPTDXEisinymACmHgdDh0nEuflYlR3JF6Hl67f6gB389XFeZPURUE/fSFDb9KXnthWic1BmhDt7XUr55a5aPIwpz7ja0IlTwxbFjySciM0tCimxF0gCh1NAneywvxDTkDJMxIeqkec0E79RLorV5xI0uIMnFpJPBLtfR4YX4FOEpluLkqmFMdTkN1pzKIsB3iPzE/LA4SIBg1qm7SqKMKPn1jZA10nJOLJqzEEGB7veDsYI12CuR/9eWX+Jv20vvMs1D7ibOxZnc7e1Q1ito0w6VCgc7laXEEWW+HFQW6SOAIC4nM4dgISrvLN9cRfiwe5MV6EHBpD5nRuCp4VlmoDW7azN7kvHjLBlHlol3s3tcCzY46AQKbmpWEX2vLv39VJvrA4naZMS5wKJWsyXos7v+i1M1QTJPqnJRrdWTRzR00qtcre4eSGtxTL0FVfpf0nlTJfowyOmQPBVECHLIGtxqcIagj1GN5r5xI+sgMednZlCYVZ/QmkqGvmS581wQ6TNLhSl9zy7jy6CRFiHGfMoFZPUGWvxeL+r76exQgLQx4cOIPCOw4osbsqw0iPprlYYaondfl7xhmPGDXKTE=
   app: store-1
+  run:
+    - "rake db:migrate"
+    - restart
   on:
     all_branches: true
     rvm: 2.2.0
-    run:
-    - "rake db:migrate"
-    - restart
-    - "rake cleanup"
+
       # - restart
     # - restart
 # after_success:
