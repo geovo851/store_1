@@ -11,10 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150803083954) do
+ActiveRecord::Schema.define(version: 20150803195608) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "carts", force: :cascade do |t|
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "carts", ["user_id"], name: "index_carts_on_user_id", using: :btree
+
+  create_table "categories", force: :cascade do |t|
+    t.string   "category"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "goods", force: :cascade do |t|
     t.string   "name"
@@ -27,4 +41,30 @@ ActiveRecord::Schema.define(version: 20150803083954) do
     t.datetime "updated_at",  null: false
   end
 
+  create_table "positions", force: :cascade do |t|
+    t.integer  "good_id"
+    t.integer  "cart_id"
+    t.float    "quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "positions", ["cart_id"], name: "index_positions_on_cart_id", using: :btree
+  add_index "positions", ["good_id"], name: "index_positions_on_good_id", using: :btree
+
+  create_table "users", force: :cascade do |t|
+    t.string   "name"
+    t.string   "surname"
+    t.string   "email"
+    t.string   "phone"
+    t.string   "city"
+    t.string   "street"
+    t.string   "flat_number"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_foreign_key "carts", "users"
+  add_foreign_key "positions", "carts"
+  add_foreign_key "positions", "goods"
 end

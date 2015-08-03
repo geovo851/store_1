@@ -2,6 +2,7 @@ class GoodsController < ApplicationController
   
   def index
     @goods = Good.all
+    @count = Cart.all.count
   end
   
   def show
@@ -42,6 +43,7 @@ class GoodsController < ApplicationController
  
     redirect_to goods_path
   end
+  
   private
     def good_params
       params.require(:good).permit(:name, :photo, :description, :category_id, 

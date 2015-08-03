@@ -1,0 +1,29 @@
+<h1>Carts</h1>
+
+<% if @carts.empty? %>
+  <b>No carts in store</b>
+<% else %>
+  <table border="1">
+    <tr>
+      <th>cart id</th>
+      <th>User</th>
+      <th>good</th>
+      <th>quantity</th>
+      <th></th>
+    </tr>
+
+    <% @carts.each do |c| %>
+      <% c.positions.each do |p| %>
+        <tr>
+          <td><%= c.id %></td>
+          <td><%= c.user.name if c.user %></td>
+          <td><%= p.good.name if p.good %></td>
+          <td><%= p.quantity %></td>
+        </tr>
+      <% end %>
+    <% end %>
+
+  </table>
+<% end %>
+
+<h3><%= link_to 'back', goods_path %></h3>

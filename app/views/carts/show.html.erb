@@ -1,0 +1,11 @@
+<h1>Cart</h1>
+
+<% cart.positions.each do |p| %>
+  <tr>
+    <td><%= c.id %></td>
+    <td><%= p.good.name if p.good %></td>
+    <td><%= p.quantity %></td>
+  </tr>
+<% end %>
+
+<h3><%= link_to 'back', carts_path %></h3>
