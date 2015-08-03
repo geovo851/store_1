@@ -1,0 +1,35 @@
+<h1>Goods</h1>
+
+<p><%= link_to 'Добавить товар', new_good_path %></p>
+
+<% if @goods.empty? %>
+  <b>No goods in store</b>
+<% else %>
+  <table border="1">
+    <tr>
+      <th>good id</th>
+      <th>Name</th>
+      <th>Price</th>
+      <th></th>
+      <th></th>
+    </tr>
+
+    <% @goods.each do |i| %>
+
+      <tr>
+        <td><%= i.id %></td>
+        <td><%= link_to i.name, good_path(i) %></td>
+        <td><%= i.price %> грн.</td>
+        <td><%= link_to 'Удалить', good_path(i),
+                method: :delete,
+                data: { confirm: 'Вы уверены?' } %></td>
+        <td><%= button_to 'Редактировать', edit_good_path(i),
+                method: :get %></td>
+       </tr>
+
+    <% end %>
+
+  </table>
+<% end %>
+
+<h3><%= link_to 'back', goods_path %></h3>

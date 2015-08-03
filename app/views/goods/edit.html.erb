@@ -1,0 +1,10 @@
+<h1>Edit good</h1>
+
+<%= form_for @good do |f| %>
+  
+  <%= render partial: 'form', locals: { f: f } %>
+  <p><%= f.submit 'Сохранить товар' %></p>
+
+<% end %>
+
+<h3><%= link_to 'back', goods_path %></h3>
