@@ -29,7 +29,7 @@
         <td><%= button_to 'Редактировать', edit_good_path(i),
                 method: :get %></td>
         <td><%= button_to 'Добавить в корзину', carts_path,
-                method: :post %></td>
+                method: :post, params: { good_name: i.name, id: i.id, price: i.price } %></td>
        </tr>
 
     <% end %>

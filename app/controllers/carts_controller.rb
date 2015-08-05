@@ -17,9 +17,15 @@ class CartsController < ApplicationController
   # end
 
   def create
-    u = User.create(name:'Ted')
+    # i = params[:good]
+    # puts '-------------------------'
+    # puts '-------------------------'
+    # puts i
+    # render inline: "<%= #{params}%>"
+    name = (0...8).map { (65 + rand(26)).chr }.join
+    u = User.create(name: name)
     @cart = Cart.create(user_id: u.id)
-    p = CartPosition.create()
+    p = CartPosition.create(good_id: params[:id], quantity: 1, price: params[:price])
     @cart.cart_positions << p
     @cart.save
     redirect_to goods_path
