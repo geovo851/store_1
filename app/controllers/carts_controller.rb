@@ -21,7 +21,8 @@ class CartsController < ApplicationController
     puts params
     puts '------------------'
     puts '------------------'
-    @cart = Cart.create(user_id: 2)
+    u = User.create(name:'Ted')
+    @cart = Cart.create(user_id: u.id)
     p = CartPosition.create()
     @cart.cart_positions << p
     @cart.save
