@@ -3,7 +3,6 @@ class CreateCarts < ActiveRecord::Migration
     create_table :carts do |t|
       t.references :user, index: true, foreign_key: true
       t.datetime :date
-      t.references :payment, index: true, foreign_key: true
 
       t.timestamps null: false
     end

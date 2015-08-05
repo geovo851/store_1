@@ -31,12 +31,10 @@ ActiveRecord::Schema.define(version: 20150805095611) do
   create_table "carts", force: :cascade do |t|
     t.integer  "user_id"
     t.datetime "date"
-    t.integer  "payment_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_index "carts", ["payment_id"], name: "index_carts_on_payment_id", using: :btree
   add_index "carts", ["user_id"], name: "index_carts_on_user_id", using: :btree
 
   create_table "categories", force: :cascade do |t|
@@ -69,12 +67,14 @@ ActiveRecord::Schema.define(version: 20150805095611) do
   add_index "order_positions", ["order_id"], name: "index_order_positions_on_order_id", using: :btree
 
   create_table "orders", force: :cascade do |t|
+    t.integer  "payment_id"
     t.integer  "user_id"
-    t.string   "delivery_adress"
+    t.text     "delivery_adress"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
 
+  add_index "orders", ["payment_id"], name: "index_orders_on_payment_id", using: :btree
   add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
 
   create_table "payments", force: :cascade do |t|
@@ -85,21 +85,18 @@ ActiveRecord::Schema.define(version: 20150805095611) do
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
-    t.string   "surname"
     t.string   "email"
-    t.string   "phone"
-    t.string   "city"
-    t.string   "street"
-    t.string   "flat_number"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.text     "adress"
+    t.string   "role"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_foreign_key "cart_positions", "carts"
   add_foreign_key "cart_positions", "goods"
-  add_foreign_key "carts", "payments"
   add_foreign_key "carts", "users"
   add_foreign_key "order_positions", "goods"
   add_foreign_key "order_positions", "orders"
+  add_foreign_key "orders", "payments"
   add_foreign_key "orders", "users"
 end
