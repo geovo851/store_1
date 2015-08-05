@@ -11,17 +11,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150803195608) do
+ActiveRecord::Schema.define(version: 20150805095611) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "carts", force: :cascade do |t|
-    t.integer  "user_id"
+  create_table "cart_positions", force: :cascade do |t|
+    t.integer  "cart_id"
+    t.integer  "good_id"
+    t.float    "quantity"
+    t.float    "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  add_index "cart_positions", ["cart_id"], name: "index_cart_positions_on_cart_id", using: :btree
+  add_index "cart_positions", ["good_id"], name: "index_cart_positions_on_good_id", using: :btree
+
+  create_table "carts", force: :cascade do |t|
+    t.integer  "user_id"
+    t.datetime "date"
+    t.integer  "payment_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "carts", ["payment_id"], name: "index_carts_on_payment_id", using: :btree
   add_index "carts", ["user_id"], name: "index_carts_on_user_id", using: :btree
 
   create_table "categories", force: :cascade do |t|
@@ -41,16 +56,32 @@ ActiveRecord::Schema.define(version: 20150803195608) do
     t.datetime "updated_at",  null: false
   end
 
-  create_table "positions", force: :cascade do |t|
+  create_table "order_positions", force: :cascade do |t|
+    t.integer  "order_id"
     t.integer  "good_id"
-    t.integer  "cart_id"
-    t.float    "quantity"
+    t.float    "qauntity"
+    t.float    "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_index "positions", ["cart_id"], name: "index_positions_on_cart_id", using: :btree
-  add_index "positions", ["good_id"], name: "index_positions_on_good_id", using: :btree
+  add_index "order_positions", ["good_id"], name: "index_order_positions_on_good_id", using: :btree
+  add_index "order_positions", ["order_id"], name: "index_order_positions_on_order_id", using: :btree
+
+  create_table "orders", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "delivery_adress"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
+
+  create_table "payments", force: :cascade do |t|
+    t.string   "type_of_paiment"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
@@ -64,7 +95,11 @@ ActiveRecord::Schema.define(version: 20150803195608) do
     t.datetime "updated_at",  null: false
   end
 
+  add_foreign_key "cart_positions", "carts"
+  add_foreign_key "cart_positions", "goods"
+  add_foreign_key "carts", "payments"
   add_foreign_key "carts", "users"
-  add_foreign_key "positions", "carts"
-  add_foreign_key "positions", "goods"
+  add_foreign_key "order_positions", "goods"
+  add_foreign_key "order_positions", "orders"
+  add_foreign_key "orders", "users"
 end

@@ -1,5 +1,6 @@
 class Cart < ActiveRecord::Base
   belongs_to :user
-  has_many :positions
-  has_many :goods, through: :positions
+  belongs_to :payment
+  has_many :cart_positions
+  has_many :goods, through: :cart_positions
 end
