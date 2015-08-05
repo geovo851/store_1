@@ -17,10 +17,6 @@ class CartsController < ApplicationController
   # end
 
   def create
-    puts '------------------'
-    puts params
-    puts '------------------'
-    puts '------------------'
     u = User.create(name:'Ted')
     @cart = Cart.create(user_id: u.id)
     p = CartPosition.create()
