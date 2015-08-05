@@ -1,4 +1,8 @@
-<h1>Goods</h1>
+<% provide(:goods, 'active') %>
+<% provide(:title, 'Goods') %>
+
+<div class="container">
+<h1>Product</h1>
 <h2>В корзине: <%= @count %></h2>
 
 <p><%= link_to 'Добавить товар', new_good_path %></p>
@@ -39,4 +43,4 @@
 
 
 <h3><%= link_to 'back', goods_path %></h3>
-<h3><%= link_to 'Carts', carts_path %></h3>
+</div>
