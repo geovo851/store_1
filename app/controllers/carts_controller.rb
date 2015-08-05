@@ -22,8 +22,8 @@ class CartsController < ApplicationController
     puts '------------------'
     puts '------------------'
     @cart = Cart.create(user_id: 2)
-    p = Position.create()
-    @cart.positions << p
+    p = CartPosition.create()
+    @cart.cart_positions << p
     @cart.save
     redirect_to goods_path
   end

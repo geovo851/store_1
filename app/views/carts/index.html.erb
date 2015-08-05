@@ -13,7 +13,7 @@
     </tr>
 
     <% @carts.each do |c| %>
-      <% c.positions.each do |p| %>
+      <% c.cart_positions.each do |p| %>
         <tr>
           <td><%= c.id %></td>
           <td><%= c.user.name if c.user %></td>
