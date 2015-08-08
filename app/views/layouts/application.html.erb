@@ -7,10 +7,16 @@
       <%= csrf_meta_tags %>
     </head>
     <body>
+
+    <%= render 'shared/navbar' %>
+
+    <div class='main-page-content <%= controller.controller_name %>'>
+
         <div class="row">
+
             <div class="col-sm-3 col-md-2 sidebar">
                 <ul class="nav nav-sidebar">
-                    <li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li>
+                    <li class="active"><a href="#">Компьютеры <span class="sr-only">(current)</span></a></li>
                     <li><a href="#">Мониторы</a></li>
                     <li><a href="#">Процессоры</a></li>
                     <li><a href="#">Видеокарты</a></li>
@@ -29,16 +35,15 @@
                 </ul>
             </div>
 
-            <%= render 'shared/navbar' %>
-            <div class='main-page-content <%= controller.controller_name %>'>
-                <%= yield %>
-            </div>
-            
+            <%= yield %>
+
         </div>
 
-        <footer>
-          <p>&copy; Company 2015</p>
-        </footer>
+    </div>
+
+    <footer>
+        <p>&copy; Company 2015. All Rights Reserved. </p>
+    </footer>
 
     </body>
 </html>

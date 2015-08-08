@@ -1,5 +1,7 @@
 <% provide(:carts, 'active') %>
 <% provide(:title, 'Carts') %>
+
+<div class="container">
 <h1>Carts</h1>
 
 <% if @carts.empty? %>
@@ -29,3 +31,4 @@
 <% end %>
 
 <h3><%= link_to 'back', products_path %></h3>
+</div>

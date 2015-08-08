@@ -2,7 +2,7 @@ class ProductsController < ApplicationController
 
   def index
     @products = Product.all
-    @count = Order.where(order: false).count
+    @count = Order.where(order: nil).count
   end
   
   def show
