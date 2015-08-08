@@ -22,13 +22,13 @@ class CartsController < ApplicationController
     # puts '-------------------------'
     # puts i
     # render inline: "<%= #{params}%>"
-    # name = (0...8).map { (65 + rand(26)).chr }.join
-    # u = User.create(name: name)
-    # @cart = Cart.create(user_id: u.id)
-    # p = CartPosition.create(good_id: params[:id], quantity: 1, price: params[:price])
-    # @cart.cart_positions << p
-    # @cart.save
-    # redirect_to goods_path
+    name = (0...8).map { (65 + rand(26)).chr }.join
+    u = User.create(name: name)
+    @cart = Order.create(user_id: u.id)
+    p = ProductsOrder.create(product_id: params[:id], quantity: 1, price: params[:price])
+    @cart.products_orders << p
+    @cart.save
+    redirect_to products_path
   end
 
   def update
