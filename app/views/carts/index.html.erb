@@ -15,11 +15,11 @@
     </tr>
 
     <% @carts.each do |c| %>
-      <% c.cart_positions.each do |p| %>
+      <% c.goods_orders.each do |p| %>
         <tr>
           <td><%= c.id %></td>
           <td><%= c.user.name if c.user %></td>
-          <td><%= p.good.name if p.good %></td>
+          <td><%= p.product.name if p.product %></td>
           <td><%= p.quantity %></td>
         </tr>
       <% end %>
@@ -28,4 +28,4 @@
   </table>
 <% end %>
 
-<h3><%= link_to 'back', goods_path %></h3>
+<h3><%= link_to 'back', products_path %></h3>

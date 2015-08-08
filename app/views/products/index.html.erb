@@ -3,12 +3,12 @@
 
 <div class="container">
     <h1>Product</h1>
-    <h2>В корзине: <%= @count %></h2>
+    <h4>Product in cart: <%= @count %></h4>
 
-    <p><%= link_to 'Добавить товар', new_good_path %></p>
+    <p><%= link_to 'Add product', new_product_path %></p>
 
-    <% if @goods.empty? %>
-      <b>No goods in store</b>
+    <% if @products.empty? %>
+      <b>No products in store</b>
     <% else %>
       <table border="1">
         <tr>
@@ -20,19 +20,19 @@
           <th></th>
         </tr>
 
-        <% @goods.each do |i| %>
+        <% @products.each do |i| %>
 
           <tr>
             <td><%= i.id %></td>
-            <td><%= link_to i.name, good_path(i) %></td>
+            <td><%= link_to i.name, product_path(i) %></td>
             <td><%= i.price %> грн.</td>
             <td><%= i.category.category if i.category %></td>
-            <td><%= link_to 'Удалить', good_path(i),
+            <td><%= link_to 'Delete', product_path(i),
                     method: :delete,
-                    data: { confirm: 'Вы уверены?' } %></td>
-            <td><%= button_to 'Редактировать', edit_good_path(i),
+                    data: { confirm: 'You sure?' } %></td>
+            <td><%= button_to 'Edit', edit_product_path(i),
                     method: :get %></td>
-            <td><%= button_to 'Добавить в корзину', carts_path,
+            <td><%= button_to 'Add to cart', carts_path,
                     method: :post, params: { good_name: i.name, id: i.id, price: i.price } %></td>
            </tr>
 
@@ -41,5 +41,5 @@
       </table>
     <% end %>
 
-    <h3><%= link_to 'back', goods_path %></h3>
+    <h3><%= link_to 'back', products_path %></h3>
 </div>
