@@ -2,45 +2,44 @@
 <% provide(:title, 'Goods') %>
 
 <div class="container">
-<h1>Product</h1>
-<h2>В корзине: <%= @count %></h2>
+    <h1>Product</h1>
+    <h2>В корзине: <%= @count %></h2>
 
-<p><%= link_to 'Добавить товар', new_good_path %></p>
+    <p><%= link_to 'Добавить товар', new_good_path %></p>
 
-<% if @goods.empty? %>
-  <b>No goods in store</b>
-<% else %>
-  <table border="1">
-    <tr>
-      <th>good id</th>
-      <th>Name</th>
-      <th>Price</th>
-      <th>Category</th>
-      <th></th>
-      <th></th>
-    </tr>
+    <% if @goods.empty? %>
+      <b>No goods in store</b>
+    <% else %>
+      <table border="1">
+        <tr>
+          <th>good id</th>
+          <th>Name</th>
+          <th>Price</th>
+          <th>Category</th>
+          <th></th>
+          <th></th>
+        </tr>
 
-    <% @goods.each do |i| %>
+        <% @goods.each do |i| %>
 
-      <tr>
-        <td><%= i.id %></td>
-        <td><%= link_to i.name, good_path(i) %></td>
-        <td><%= i.price %> грн.</td>
-        <td><%= i.category.category if i.category %></td>
-        <td><%= link_to 'Удалить', good_path(i),
-                method: :delete,
-                data: { confirm: 'Вы уверены?' } %></td>
-        <td><%= button_to 'Редактировать', edit_good_path(i),
-                method: :get %></td>
-        <td><%= button_to 'Добавить в корзину', carts_path,
-                method: :post, params: { good_name: i.name, id: i.id, price: i.price } %></td>
-       </tr>
+          <tr>
+            <td><%= i.id %></td>
+            <td><%= link_to i.name, good_path(i) %></td>
+            <td><%= i.price %> грн.</td>
+            <td><%= i.category.category if i.category %></td>
+            <td><%= link_to 'Удалить', good_path(i),
+                    method: :delete,
+                    data: { confirm: 'Вы уверены?' } %></td>
+            <td><%= button_to 'Редактировать', edit_good_path(i),
+                    method: :get %></td>
+            <td><%= button_to 'Добавить в корзину', carts_path,
+                    method: :post, params: { good_name: i.name, id: i.id, price: i.price } %></td>
+           </tr>
 
+        <% end %>
+
+      </table>
     <% end %>
 
-  </table>
-<% end %>
-
-
-<h3><%= link_to 'back', goods_path %></h3>
+    <h3><%= link_to 'back', goods_path %></h3>
 </div>
