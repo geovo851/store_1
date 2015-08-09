@@ -84,12 +84,12 @@ Rails.application.configure do
   config.action_mailer.default :charset => "utf-8"
 
   config.action_mailer.smtp_settings = {
-    address: "smtp.gmail.com",
-    port: 587,
-    domain: "store-1.herokuapp.com",
-    authentication: "plain",
-    enable_starttls_auto: true,
-    user_name: "testr1290",
-    password: "q12349874"
+  address: "smtp.gmail.com",
+  port: '587',
+  enable_starttls_auto: true,
+  user_name: 'qast1515@gmail.com',
+  password: 'as741852',
+  authentication: :plain,
+  domain: 'mail.google.com'
   }
 end
