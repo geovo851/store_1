@@ -53,3 +53,7 @@ group :production do
 end
 
 gem 'devise'
+
+gem 'carrierwave'
+gem 'mini_magick'
+

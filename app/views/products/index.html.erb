@@ -13,6 +13,7 @@
       <table border="1">
         <tr>
           <th>good id</th>
+          <th>Photo</th>
           <th>Name</th>
           <th>Price</th>
           <th>Category</th>
@@ -24,12 +25,13 @@
 
           <tr>
             <td><%= i.id %></td>
+            <td><%= image_tag(i.photo_url(:thumb)) if i.photo? %> </td>
             <td><%= link_to i.name, product_path(i) %></td>
             <td><%= i.price %> грн.</td>
             <td><%= i.category.category if i.category %></td>
             <td><%= link_to 'Delete', product_path(i),
                     method: :delete,
-                    data: { confirm: 'You sure?' } %></td>
+                    data: { confirm: 'Are you sure?' } %></td>
             <td><%= button_to 'Edit', edit_product_path(i),
                     method: :get %></td>
             <td><%= button_to 'Add to cart', carts_path,

@@ -51,6 +51,11 @@ GEM
     builder (3.2.2)
     byebug (5.0.0)
       columnize (= 0.9.0)
+    carrierwave (0.10.0)
+      activemodel (>= 3.2.0)
+      activesupport (>= 3.2.0)
+      json (>= 1.7)
+      mime-types (>= 1.16)
     coderay (1.1.0)
     coffee-rails (4.1.0)
       coffee-script (>= 2.2.0)
@@ -116,6 +121,7 @@ GEM
       thin (~> 1.5.0)
     method_source (0.8.2)
     mime-types (2.6.1)
+    mini_magick (4.2.10)
     mini_portile (0.6.2)
     minitest (5.7.0)
     multi_json (1.11.2)
@@ -260,11 +266,13 @@ PLATFORMS
 DEPENDENCIES
   bootstrap-sass
   byebug
+  carrierwave
   coffee-rails (~> 4.1.0)
   devise
   jbuilder (~> 2.0)
   jquery-rails
   mailcatcher
+  mini_magick
   pg (= 0.15.1)
   rails (= 4.2.3)
   rails_12factor (= 0.0.2)

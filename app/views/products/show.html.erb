@@ -1,4 +1,7 @@
 <h1><%= @product.name %></h1>
+
+<p><%= image_tag(@product.photo_url) if @product.photo? %></p>
+
 <ul>
   <li><%= @product.description %></li>
   <li><%= @product.price %></li>
