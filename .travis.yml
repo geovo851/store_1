@@ -16,7 +16,7 @@ deploy:
   app: store-1
   run:
     # - "rake db:reset"
-    - "rake db:migrate"
+    - rake db:migrate
     - restart
   on:
     branch: master
