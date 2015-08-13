@@ -8,53 +8,52 @@
     </head>
     <body>
 
-    <%= render 'shared/navbar' %>
+        <%= render 'shared/navbar' %>
 
-    <div class='main-page-content <%= controller.controller_name %>'>
-        
+        <div class='main-page-content <%= controller.controller_name %>'>
+             <div class="container"> 
+                <div class="row">
 
-        <div class="row">
+                    <div class="col-sm-2 col-md-2 sidebar">
+                        <ul class="nav nav-sidebar">
+                            <li class="active"><a href="#">Компьютеры <span class="sr-only">(current)</span></a></li>
+                            <li><a href="#">Мониторы</a></li>
+                            <li><a href="#">Процессоры</a></li>
+                            <li><a href="#">Видеокарты</a></li>
+                        </ul>
+                        <ul class="nav nav-sidebar">
+                            <li><a href="">Ноутбуки</a></li>
+                            <li><a href="">Телевизоры</a></li>
+                            <li><a href="">Стиральные машины</a></li>
+                            <li><a href="">Холодильники</a></li>
+                            <li><a href="">Телефоны</a></li>
+                        </ul>
+                        <ul class="nav nav-sidebar">
+                            <li><a href="">Видео</a></li>
+                            <li><a href="">Аудио</a></li>
+                            <li><a href="">Разное</a></li>
+                        </ul>
+                    </div>
 
-            <div class="col-sm-3 col-md-2 sidebar">
-                <ul class="nav nav-sidebar">
-                    <li class="active"><a href="#">Компьютеры <span class="sr-only">(current)</span></a></li>
-                    <li><a href="#">Мониторы</a></li>
-                    <li><a href="#">Процессоры</a></li>
-                    <li><a href="#">Видеокарты</a></li>
-                </ul>
-                <ul class="nav nav-sidebar">
-                    <li><a href="">Ноутбуки</a></li>
-                    <li><a href="">Телевизоры</a></li>
-                    <li><a href="">Стиральные машины</a></li>
-                    <li><a href="">Холодильники</a></li>
-                    <li><a href="">Телефоны</a></li>
-                </ul>
-                <ul class="nav nav-sidebar">
-                    <li><a href="">Видео</a></li>
-                    <li><a href="">Аудио</a></li>
-                    <li><a href="">Разное</a></li>
-                </ul>
+                    <div class="col-sm-10 col-md-10 sidebar">
+                        <% if notice %>
+                            <p class="notice"><%= notice %></p>
+                        <% end %>
+                        <% if alert %>
+                            <p class="alert"><%= alert %></p>
+                        <% end %>
+
+                        <%= yield %>
+
+                    </div>
+
+                </div>
             </div>
-            
-            <p class="notice"><%= notice %></p>
-            <p class="alert"><%= alert %></p>
-            
-            <% if user_signed_in? %>
-            <span>Здравствуйте, <%= current_user.email %></span>
-            <%= link_to 'Выйти', destroy_user_session_path, :method => :delete %>
-            <% else %>
-            <%= link_to 'Войти', new_user_session_path %> или <%= link_to 'Зарегистрироваться', new_user_registration_path %>
-            <% end %>
-
-            <%= yield %>
-
         </div>
 
-    </div>
-
-    <footer>
-        <p>&copy; Company 2015. All Rights Reserved. </p>
-    </footer>
+        <footer>
+            <p>&copy; Company 2015. All Rights Reserved. </p>
+        </footer>
 
     </body>
 </html>

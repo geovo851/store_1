@@ -2,7 +2,7 @@ $grayMediumLight: #eaeaea;
 
 .main-page-content {
   padding-top: 50px;
-  padding-left: 10px;
+  /*padding-left: 10px;*/
 }
 footer {
   padding-left: 100px;
@@ -28,4 +28,8 @@ footer {
       margin-left: 10px;
     }
   }
+}
+
+#paginate-centre{
+  text-align: center;
 }

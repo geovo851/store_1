@@ -1,49 +1,50 @@
 <% provide(:goods, 'active') %>
 <% provide(:title, 'Goods') %>
 
+
 <div class="container">
-    <h1>Product</h1>
-    <h4>Product in cart: <%= @count %></h4>
+  <div class="page-header">
+    <h1>Products</h1>
+  </div>
 
-    <p><%= link_to 'Add product', new_product_path %></p>
+  <p><%= link_to 'Add product', new_product_path %></p>
+  
+  <div class="row">
+    <div class="col-sm-10 col-md-8 sidebar">
+      <% if @products.empty? %>
+        <b>No products in store</b>
+      <% else %>
 
-    <% if @products.empty? %>
-      <b>No products in store</b>
-    <% else %>
-      <table border="1">
-        <tr>
-          <th>good id</th>
-          <th>Photo</th>
-          <th>Name</th>
-          <th>Price</th>
-          <th>Category</th>
-          <th></th>
-          <th></th>
-        </tr>
+        <div class="table-responsive">
+          <table class="table ">
+            <tbody>
 
-        <% @products.each do |i| %>
+              <% @products.each do |i| %>
 
-          <tr>
-            <td><%= i.id %></td>
-            <td><%= image_tag(i.photo_url(:thumb)) if i.photo? %> </td>
-            <td><%= link_to i.name, product_path(i) %></td>
-            <td><%= i.price %> грн.</td>
-            <td><%= i.category.category if i.category %></td>
-            <td><%= link_to 'Delete', product_path(i),
-                    method: :delete,
-                    data: { confirm: 'Are you sure?' } %></td>
-            <td><%= button_to 'Edit', edit_product_path(i),
-                    method: :get %></td>
-            <td><%= button_to 'Add to cart', carts_path,
-                    method: :post, params: { good_name: i.name, id: i.id, price: i.price } %></td>
-           </tr>
+                <tr>
+               
+                  <td><%= image_tag(i.photo_url(:thumb)) if i.photo? %> </td>
+                  <td>
+                    <p><%= link_to i.name, product_path(i) %></p>
+                    <p><%= link_to i.description, product_path(i) %></p>
+                    <p><%= button_to 'Edit', edit_product_path(i),
+                      method: :get %></p>
+                  </td>
+                  <td>
+                    <p><%= i.price %>$</p>
+                    <p><%= button_to 'Add to cart', carts_path,
+                        method: :post, params: { good_name: i.name, id: i.id, price: i.price } %></p>
+                  </td>
 
-        <% end %>
+                </tr>
 
-      </table>
-    <% end %>
-    
-    <%= will_paginate %>
-
-    <h3><%= link_to 'back', products_path %></h3>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+        <div id="paginate-centre"><%= will_paginate %></div>
+      <% end %>
+    </div>
+  </div>
+  <h3><%= link_to 'back', products_path %></h3>
 </div>
