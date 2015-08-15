@@ -23,7 +23,7 @@ class ProductsController < ApplicationController
     @product = Product.new(product_params)
    
     if @product.save
-      redirect_to @product
+      redirect_to products_path
     else
       @categories = Category.all
       render 'new'
@@ -34,7 +34,7 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
    
     if @product.update(product_params)
-      redirect_to @product
+      redirect_to products_path
     else
       @categories = Category.all
       render 'edit'
