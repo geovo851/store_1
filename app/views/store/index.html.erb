@@ -1,0 +1,58 @@
+<% provide(:products, 'active') %>
+<% provide(:title, 'Products') %>
+
+<div class="container-fluid"> 
+  <div class="row">
+
+    <%= render 'shared/side_bar' %>
+
+    <div class="col-sm-9 col-md-10">
+
+    <div class="container">
+      <div class="page-header">
+        <h1>Products</h1>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-10 col-md-8 sidebar">
+          <% if @products.empty? %>
+            <b>No products in store</b>
+          <% else %>
+
+            <div class="table-responsive">
+              <table class="table ">
+                <tbody>
+
+                  <% @products.each do |i| %>
+
+                    <tr>
+                   
+                      <td><%= image_tag(i.photo_url(:thumb)) if i.photo? %> </td>
+                      <td>
+                        <p><%= link_to i.name, store_show_product_path(i) %></p>
+                        <p><%= link_to i.description, store_show_product_path(i) %></p>
+                        <p><%= link_to 'Reviews', store_show_product_path(i) %></p>
+                      </td>
+                      <td>
+                        <p><%= i.price %>$</p>
+                        <p>Available: <%= i.available ? 'Yes' : 'No' %></p>
+                        <p><%= button_to 'Add to cart', carts_path,
+                            method: :post, params: { good_name: i.name, id: i.id, price: i.price }, class: "btn btn-primary btn-sm" %></p>
+                      </td>
+
+                    </tr>
+
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+            <div id="paginate-centre"><%= will_paginate @products %></div>
+          <% end %>
+        </div>
+      </div>
+
+      <h3><%= link_to 'back', products_path %></h3>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,24 @@
+<div class="container-fluid"> 
+  <div class="row">
+
+    <%= render 'shared/side_bar' %>
+
+    <div class="col-sm-9 col-md-10">
+
+    <div class="container">
+      <div class="page-header">
+        <h1><%= @product.name %></h1>
+      </div>
+
+      <p><%= image_tag(@product.photo_url) if @product.photo? %></p>
+      <ul>
+        <li>Description: <%= @product.description %></li>
+        <li>Price: <%= @product.price %></li>
+        <li>Available: <%= @product.available ? 'Yes' : 'No' %></li>
+      </ul>
+
+      <h3><%= link_to 'Back', :back %></h3>
+    </div>
+    
+  </div>
+</div>

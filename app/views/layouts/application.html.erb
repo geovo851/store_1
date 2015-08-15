@@ -1,59 +1,28 @@
 <!DOCTYPE html>
 <html>
-    <head>
-      <title><%= yield(:goods)%> | Store</title>
-      <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-      <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-      <%= csrf_meta_tags %>
-    </head>
-    <body>
+  <head>
+  <title><%= yield(:title)%> | Store</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
 
-        <%= render 'shared/navbar' %>
+    <%= render 'shared/navbar' %>
 
-        <div class='main-page-content <%= controller.controller_name %>'>
-             <div class="container"> 
-                <div class="row">
+    <div class='main-page-content <%= controller.controller_name %>'>
+      <div class="container">
+        <% flash.each do |key, value| %>
+          <%= content_tag(:div, value, class: "alert #{bootstrap_class_for(key)} flash") %>
+        <% end %>
 
-                    <div class="col-sm-2 col-md-2 sidebar">
-                        <ul class="nav nav-sidebar">
-                            <li class="active"><a href="#">Компьютеры <span class="sr-only">(current)</span></a></li>
-                            <li><a href="#">Мониторы</a></li>
-                            <li><a href="#">Процессоры</a></li>
-                            <li><a href="#">Видеокарты</a></li>
-                        </ul>
-                        <ul class="nav nav-sidebar">
-                            <li><a href="">Ноутбуки</a></li>
-                            <li><a href="">Телевизоры</a></li>
-                            <li><a href="">Стиральные машины</a></li>
-                            <li><a href="">Холодильники</a></li>
-                            <li><a href="">Телефоны</a></li>
-                        </ul>
-                        <ul class="nav nav-sidebar">
-                            <li><a href="">Видео</a></li>
-                            <li><a href="">Аудио</a></li>
-                            <li><a href="">Разное</a></li>
-                        </ul>
-                    </div>
+        <%= yield %>
+      </div>
+    </div>
 
-                    <div class="col-sm-10 col-md-10 sidebar">
-                        <% if notice %>
-                            <p class="notice"><%= notice %></p>
-                        <% end %>
-                        <% if alert %>
-                            <p class="alert"><%= alert %></p>
-                        <% end %>
+    <footer>
+      <p>&copy; Company 2015. All Rights Reserved. </p>
+    </footer>
 
-                        <%= yield %>
-
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
-        <footer>
-            <p>&copy; Company 2015. All Rights Reserved. </p>
-        </footer>
-
-    </body>
+  </body>
 </html>

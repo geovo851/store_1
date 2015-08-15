@@ -1,20 +1,22 @@
 class ProductsController < ApplicationController
+  # before_action :correct_user
 
   def index
     @products = Product.paginate(page: params[:page], :per_page => 10)
-    @count = Order.where(order: nil).count
   end
   
   def show
     @product = Product.find(params[:id])
   end
-  # /goods/new GET
+
   def new
     @product = Product.new
+    @categories = Category.all
   end
 
   def edit
     @product = Product.find(params[:id])
+    @categories = Category.all
   end
 
   def create
@@ -23,6 +25,7 @@ class ProductsController < ApplicationController
     if @product.save
       redirect_to @product
     else
+      @categories = Category.all
       render 'new'
     end
   end
@@ -33,6 +36,7 @@ class ProductsController < ApplicationController
     if @product.update(product_params)
       redirect_to @product
     else
+      @categories = Category.all
       render 'edit'
     end
   end
@@ -46,8 +50,11 @@ class ProductsController < ApplicationController
   
   private
     def product_params
-      params.require(:product).permit(:name, :photo, :description, :category_id, 
-                                   :price)
+      params.require(:product).permit(:name, :photo, :desscription, :category_id, 
+                                   :price, :available)
     end
 
+    def correct_user
+      redirect_to(root_url) unless user_signed_in?
+    end
 end

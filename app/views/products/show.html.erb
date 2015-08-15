@@ -1,10 +1,16 @@
-<h1><%= @product.name %></h1>
+<div class="container"> 
+  <div class="col-sm-12 col-md-12">
+    <div class="page-header">
+      <h1><%= @product.name %></h1>
+    </div>
+    <p><%= image_tag(@product.photo_url) if @product.photo? %></p>
+    <ul>
+      <li>Description: <%= @product.description %></li>
+      <li>Price: <%= @product.price %>$</li>
+      <li>Available: <%= @product.available ? 'Yes' : 'No' %></li>
+    </ul>
 
-<p><%= image_tag(@product.photo_url) if @product.photo? %></p>
+    <h3><%= link_to 'Back', :back %></h3>
 
-<ul>
-  <li><%= @product.description %></li>
-  <li><%= @product.price %>$</li>
-</ul>
-
-<h3><%= link_to 'back', products_path %></h3>
+  </div>
+</div>
