@@ -7,13 +7,13 @@
 
     <div class="container">
       <div class="page-header">
-        <h1><%= @product.name %></h1>
+        <h1 id="name_product"><%= @product.name %></h1>
       </div>
 
       <p><%= image_tag(@product.photo_url) if @product.photo? %></p>
       <ul>
         <li>Description: <%= @product.description %></li>
-        <li>Price: <%= @product.price %></li>
+        <li id="price">Price: <%= @product.price %>$</li>
         <li>Available: <%= @product.available ? 'Yes' : 'No' %></li>
       </ul>
 

@@ -6,7 +6,8 @@ Rails.application.routes.draw do
 
   devise_for :users
   get 'users/profile', as: 'user_root'
-
+  
+  get 'store/search/:id' => 'store#search_products', as: 'store_search_products'
   get 'store/show/:id' => 'store#show', as: 'store_show_product'
   root 'store#index'
   # The priority is based upon order of creation: first created -> highest priority.
