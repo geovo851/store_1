@@ -3,7 +3,7 @@
     <div class="page-header">
       <h1 id="name_product"><%= @product.name %></h1>
     </div>
-    <p><%= image_tag(@product.photo) if @product.photo? %></p>
+    <p><%= image_tag(@product.photo_url) if @product.photo? %></p>
     <ul>
       <li>Description: <%= @product.description %></li>
       <li id="price">Price: <%= @product.price %>$</li>

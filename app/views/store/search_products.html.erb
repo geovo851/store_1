@@ -27,7 +27,7 @@
 
                     <tr>
                    
-                      <td><%= image_tag(i.photo) if i.photo? %> </td>
+                      <td><%= image_tag(i.photo_url(:thumb)) if i.photo? %> </td>
                       <td>
                         <p id="name_product"><%= link_to i.name, store_show_product_path(i) %></p>
                         <p><%= link_to i.description, store_show_product_path(i) %></p>

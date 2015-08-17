@@ -39,7 +39,7 @@
               <tr class="info">
                 <td><%= i.id %></td>
                 <td>
-                    <p><%= image_tag(i.photo) if i.photo? %></p>
+                    <p><%= image_tag(i.photo_url(:thumb)) if i.photo? %></p>
                     <p id="name_product"><%= link_to i.name, product_path(i) %></p>
                 </td>
                 <td><%= link_to i.description, product_path(i) %></td>
