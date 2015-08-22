@@ -1,0 +1,16 @@
+<tr>
+  <td><%= image_tag(product.photo_url(:thumb)) if product.photo? %> </td>
+  <td>
+    <p id="name_product"><%= link_to product.name, store_show_product_path(product) %></p>
+    <p><%= link_to product.description, store_show_product_path(product) %></p>
+    <p><%= link_to 'Reviews', store_show_product_path(product) %></p>
+  </td>
+  <td>
+    <p id="price"><%= product.price %>$</p>
+    <p>Available: <%= product.available ? 'Yes' : 'No' %></p>
+    <p>
+      <%= button_to 'Add to cart', products_orders_path(product_id: product), 
+                    params: { price: product.price }, class: "btn btn-primary btn-sm" %>
+    </p>
+  </td>
+</tr>

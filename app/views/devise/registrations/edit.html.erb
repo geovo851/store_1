@@ -23,6 +23,12 @@
   </div>
 
   <div class="field">
+      <%= f.label :role %><br />
+      <%= f.collection_select(:role_id, Role.all, 
+                :id, :title, {:prompt => 'Please select role'}) %>
+  </div>
+
+  <div class="field">
     <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
     <%= f.password_field :current_password, autocomplete: "off" %>
   </div>

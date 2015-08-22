@@ -30,7 +30,7 @@
           </li>
           <% if @count_in_cart %>
             <li class="">
-              <%= link_to "Cart: #{@count_in_cart}", carts_path %>
+              <%= link_to "Cart: #{@count_in_cart}", order_path(@cart) %>
             </li>
           <% end %>
           
@@ -43,20 +43,19 @@
               <li><%= link_to "Settings", '#' %></li>
               <li class="divider"></li>
               <li>
+                <%= link_to 'Edit account', edit_user_registration_path %>
+              </li>
+              <li>
                 <%= link_to "Sign out", destroy_user_session_path,
                             method: "delete" %>
               </li>
             </ul>
           </li>
-          <li><%= link_to 'Admin panel', admins_path %></li>
-
+          <% if permitted_to? :index, :admins %>
+            <li><%= link_to 'Admin panel', admins_path %></li>
+          <% end %>
         <% else %>
 
-          <% if @count_in_cart %>
-            <li class="">
-              <%= link_to "Cart: #{@count_in_cart}", carts_path %>
-            </li>
-          <% end %>
           <li class="<%= yield(:sign_in) %>">
             <%= link_to 'Sign in', new_user_session_path %>
           </li>

@@ -1,12 +1,12 @@
-class CartsController < ApplicationController
+class OrdersController < ApplicationController
   # filter_resource_access
   
   def index
-    @carts = Order.all
+    @orders = Order.all
   end
   
   def show
-    @cart = Order.find(params[:id])
+    @order = Order.find(params[:id])
   end
   # # /goods/new GET
   # def new
@@ -53,10 +53,10 @@ class CartsController < ApplicationController
   end
   
   def destroy
-    # @good = Good.find(params[:id])
+    # @order = Order.find(params[:id])
     # @good.destroy
  
-    # redirect_to goods_path
+    # redirect_to orders_path
   end
   
   private

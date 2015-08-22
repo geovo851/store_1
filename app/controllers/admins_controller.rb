@@ -1,4 +1,5 @@
 class AdminsController < ApplicationController
+   filter_resource_access
   # before_action :correct_user
 
   def index

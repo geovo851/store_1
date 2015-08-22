@@ -21,33 +21,15 @@
 
             <div class="table-responsive">
               <table class="table ">
-                <tbody>
-
-                  <% @products.each do |i| %>
-
-                    <tr>
-                   
-                      <td><%= image_tag(i.photo_url(:thumb)) if i.photo? %> </td>
-                      <td>
-                        <p id="name_product"><%= link_to i.name, store_show_product_path(i) %></p>
-                        <p><%= link_to i.description, store_show_product_path(i) %></p>
-                        <p><%= link_to 'Reviews', store_show_product_path(i) %></p>
-                      </td>
-                      <td>
-                        <p id="price"><%= i.price %>$</p>
-                        <p>Available: <%= i.available ? 'Yes' : 'No' %></p>
-                        <p><%= button_to 'Add to cart', carts_path,
-                            method: :post, params: { good_name: i.name, id: i.id, price: i.price }, class: "btn btn-primary btn-sm" %></p>
-                      </td>
-
-                    </tr>
-
-                  <% end %>
+                <tbody id="products">
+                  <%= render partial: "product", :collection => @products, :as => :product %>
                 </tbody>
               </table>
             </div>
             
-            <div id="paginate-centre"><%= will_paginate @products %></div>
+            <div id="paginator", class="paginate-centre">
+              <%= paginate @products, :remote => true %>
+            </div>
 
           <% end %>
         </div>

@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  # get 'carts/:id' => 'carts#show', as: 'cart'
+  resources :orders
+  resources :products_orders
   resources :carts
   resources :categories
   resources :products

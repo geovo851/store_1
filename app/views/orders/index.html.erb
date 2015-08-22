@@ -1,0 +1,34 @@
+<% provide(:carts, 'active') %>
+<% provide(:title, 'Carts') %>
+
+<div class="container">
+<h1>Orders</h1>
+
+<% if @orders.empty? %>
+  <b>No orders in store</b>
+<% else %>
+  <table border="1">
+    <tr>
+      <th>order id</th>
+      <th>User</th>
+      <th>product</th>
+      <th>quantity</th>
+      <th></th>
+    </tr>
+
+    <% @orders.each do |o| %>
+      <% o.products_orders.each do |p| %>
+        <tr>
+          <td><%= o.id %></td>
+          <td><%= o.user.name if c.user %></td>
+          <td><%= p.product.name if p.product %></td>
+          <td><%= p.quantity %></td>
+        </tr>
+      <% end %>
+    <% end %>
+
+  </table>
+<% end %>
+
+<h3><%= link_to 'back', products_path %></h3>
+</div>
