@@ -6,10 +6,7 @@ class StoreController < ApplicationController
     @products = Product.page(params[:page]).per(10)
     @categories = Category.all
     
-    if user_signed_in?
-      set_cart
-      @count_in_cart = @cart.products_orders.count
-    end
+    count_in_cart
 
     respond_to do |format|
       format.html
@@ -19,10 +16,7 @@ class StoreController < ApplicationController
   
   def show
     @product = Product.find(params[:id])
-    if user_signed_in?
-      set_cart
-      @count_in_cart = @cart.goods_orders.count
-    end
+    count_in_cart
     @categories = Category.all
   end
   

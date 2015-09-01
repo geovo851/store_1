@@ -18,8 +18,13 @@
         <li id="price">Price: <%= @product.price %>$</li>
         <li>Available: <%= @product.available ? 'Yes' : 'No' %></li>
       </ul>
-
-      <h3><%= link_to 'Back', :back %></h3>
+      
+      <%= link_to products_orders_path(product_id: @product, price: @product.price), method: :post, class: "btn btn-primary btn-sm" do %>
+        <span class="glyphicon glyphicon-shopping-cart"></span>
+        Add to cart
+      <% end %>
+      
+      <%= link_to 'Back', :back, class: "btn btn-default btn-sm" %>
     </div>
     
   </div>
