@@ -4,7 +4,7 @@
 <div class="container">
   <div class="row">
   
-    <h2>Sign up</h2>
+    <h2 class="centre">Sign up</h2>
     <div class="col-sm-offset-2">
 
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "form-horizontal"} ) do |f| %>
@@ -36,13 +36,15 @@
           </div>
         </div>
 
-        <div class="form-group">
-            <%= f.label :role, class: "col-sm-3 control-label" %>
-            <div class="col-sm-4">
-              <%= f.collection_select(:role_id, Role.all, 
-                      :id, :title, {:prompt => 'Please select role'}) %>
-            </div>
-        </div>
+        <% unless find_role_admin %>
+          <div class="form-group">
+              <%= f.label :role, class: "col-sm-3 control-label" %>
+              <div class="col-sm-4">
+                <%= f.collection_select(:role_id, Role.all, 
+                        :id, :title, {:prompt => 'Please select role'}) %>
+              </div>
+          </div>
+        <% end %>
 
         <div class="form-group">
           <div class="col-sm-offset-3 col-sm-10">

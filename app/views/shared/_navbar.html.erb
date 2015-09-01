@@ -16,21 +16,21 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav navbar-left">
         <li class="<%= yield(:products) %>"><%= link_to 'Products', root_path %></li>
-        <li class="<%= yield(:carts) %>"><%= link_to 'Delivery and payment', '#' %></li>
-        <li class=""><%= link_to 'Guarantee', '#' %></li>
-        <li class=""><%= link_to 'Contact us', '#' %></li>
+        <li class="<%= yield(:delivery) %>"><%= link_to 'Delivery and payment', store_delivery_path %></li>
+        <li class="<%= yield(:about) %>"><%= link_to 'About Us', store_about_path %></li>
+        <li class="<%= yield(:contact) %>"><%= link_to 'Contact Us', store_contact_path %></li>
       </ul>
 
       <ul class="nav navbar-nav navbar-right"> 
         
         <% if user_signed_in? %>
 
-          <li class="">
-            <%= link_to current_user.email, user_root_path %>
+          <li class="name-user">
+            <%= current_user.email %>
           </li>
           <% if @count_in_cart %>
             <li class="">
-              <%= link_to "Cart: #{@count_in_cart}", order_path(@cart) %>
+              <%= link_to "Cart: #{@count_in_cart}", store_cart_path(@cart) %>
             </li>
           <% end %>
           
@@ -39,12 +39,10 @@
               Account <b class="caret"></b>
             </a>
             <ul class="dropdown-menu">
-              <li><%= link_to "Profile", user_root_path %></li>
-              <li><%= link_to "Settings", '#' %></li>
-              <li class="divider"></li>
               <li>
                 <%= link_to 'Edit account', edit_user_registration_path %>
               </li>
+              <li class="divider"></li>
               <li>
                 <%= link_to "Sign out", destroy_user_session_path,
                             method: "delete" %>
@@ -65,6 +63,6 @@
            
         <% end %>
        </ul>
-    </div><!--/.navbar-collapse -->
+    </div>
   </div>
 </nav>

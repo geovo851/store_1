@@ -1,9 +1,13 @@
 class ProductsController < ApplicationController
   filter_resource_access
-  # before_action :correct_user
 
   def index
-    @products = Product.paginate(page: params[:page], :per_page => 10)
+    @products = Product.page(params[:page]).per(10)
+
+    respond_to do |format|
+      format.html
+      format.js {}
+    end
   end
   
   def show
@@ -53,9 +57,5 @@ class ProductsController < ApplicationController
     def product_params
       params.require(:product).permit(:name, :photo, :description, :category_id, 
                                    :price, :available)
-    end
-
-    def correct_user
-      redirect_to(root_url) unless user_signed_in?
     end
 end

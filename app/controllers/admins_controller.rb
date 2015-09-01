@@ -1,12 +1,6 @@
 class AdminsController < ApplicationController
-   filter_resource_access
-  # before_action :correct_user
+  filter_access_to :all
 
   def index
   end
-
-  private
-    def correct_user
-      redirect_to(root_url) unless user_signed_in?
-    end
 end

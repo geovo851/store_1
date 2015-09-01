@@ -1,33 +1,26 @@
 authorization do
   role :guest do
-    # add permissions for guests here, e.g.
-     # has_permission_on :products, :to => :read
-    has_permission_on :store, :to => [:index, :show, :search_products]
-   end
+    has_permission_on :store, :to => [:index, :show, :search_products, :delivery, :about, :contact]
+  end
   
-  # permissions on other roles, such as
   role :admin do
-    has_permission_on [:products, :categories, :carts, :order], :to => :manage
-    has_permission_on :users, :to => :profile
-    has_permission_on :store, :to => [:index, :show, :search_products]
+    has_permission_on :store, :to => [:index, :show, :cart, :search_products, :delivery, :about, :contact]
+    has_permission_on [:products, :categories, :products_orders, :orders], :to => :manage
+    
     has_permission_on :admins, :to => :index
-
-    has_permission_on :products_orders, :to => :create
-
   end
 
   role :user do
-    has_permission_on :store, :to => [:index, :show, :search_products]
-    # has_permission_on :products, :to => [:read, :create]
-    
-    has_permission_on :carts, :to => [:index, :show, :create, :read, :update, :delete]
-    has_permission_on :order, :to => [:index, :show, :create, :read, :update, :delete]
-    has_permission_on :users, :to => :profile
-    # has_permission_on :products, :to => [:update, :delete] do
-    #   if_attribute :user_id => is {user.id}
-    # end
+    has_permission_on :store, :to => [:index, :show, :cart, :search_products, :delivery, :about, :contact]
+
+    has_permission_on :orders, :to => [:show, :create, :update, :delete] do
+      if_attribute :user_id => is {user.id}
+    end
+
+    has_permission_on :products_orders, :to => [:show, :create, :update, :delete] do
+      if_attribute :order => { :user_id => is { user.id } }
+    end
   end
-  # See the readme or GitHub for more examples
 end
 
 privileges do

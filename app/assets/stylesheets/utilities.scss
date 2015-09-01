@@ -7,7 +7,6 @@ $grayMediumLight: #eaeaea;
 
 .main-page-content {
   padding-top: 60px;
-  /*padding-left: 10px;*/
 }
 
 /* header */
@@ -33,16 +32,12 @@ $grayMediumLight: #eaeaea;
 footer {
   padding-left: 100px;
   text-align: center;
-}
-
-/* footer */
-
-footer {
   margin-top: 45px;
   padding-top: 5px;
   border-top: 1px solid $grayMediumLight;
-  
- 
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 10pt;
+
   small {
     float: left;
   }
@@ -70,7 +65,7 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1;
 }
 
-h2 {
+h2.centre {
   font-size: 3em;
   letter-spacing: -2px;
   margin-bottom: 30px;
@@ -79,7 +74,6 @@ h2 {
 
 .flash {
   font-size: 1.1em;
-  line-height: 0.5em;
 }
 
 #name_product {
@@ -88,4 +82,9 @@ h2 {
 
 #price {
   font-weight: bold;
+}
+
+.name-user {
+  color: white;
+  top: 13px;
 }

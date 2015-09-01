@@ -57,8 +57,8 @@ gem 'devise'
 gem 'carrierwave'
 gem 'mini_magick'
 
-gem 'will_paginate'
-gem 'bootstrap-will_paginate'
+# gem 'will_paginate'
+# gem 'bootstrap-will_paginate'
 
 gem 'declarative_authorization', github: "stffn/declarative_authorization"
 

@@ -1,0 +1,21 @@
+<tr class="info">
+  <td><%= product.id %></td>
+  <td>
+      <p><%= image_tag(product.photo_url(:thumb)) if product.photo? %></p>
+      <p id="name_good"><%= link_to product.name, product_path(product) %></p>
+  </td>
+  <td><%= link_to product.description, product_path(product) %></td>
+  <td><%= product.category.category if product.category %></td>
+  <td id="price"><%= product.price %>$</td>
+  <td><%= product.available ? 'Yes' : 'No' %></td>
+  <td>
+    <%= button_to 'Edit', edit_product_path(product),
+            method: :get, class: "btn btn-success btn-xs" %>
+  </td>
+  <td>
+    <%= button_to 'Delete', product_path(product),
+          method: :delete,
+          data: { confirm: 'Are you sure?' }, 
+          class: "btn btn-danger btn-xs" %>
+  </td>
+</tr>

@@ -1,10 +1,8 @@
 class StoreController < ApplicationController
+  filter_access_to :all
   include CurrentCart
 
- filter_access_to :all
-
   def index
-    # @products = Product.paginate(page: params[:page], :per_page => 10)
     @products = Product.page(params[:page]).per(10)
     @categories = Category.all
     
@@ -27,10 +25,13 @@ class StoreController < ApplicationController
     end
     @categories = Category.all
   end
+  
+  def cart
+   @cart = Order.find(params[:id])
+  end
 
   def search_products
-    # @products = Product.where(category_id: params[:id]).paginate(page: params[:page], :per_page => 10)
-    @products = Product.where(category_id: params[:id]).page(params[:page]).per_page(10)
+    @products = Product.where(category_id: params[:id]).page(params[:page]).per(10)
 
     @categories = Category.all
     @category_id = "category_#{params[:id]}"
@@ -40,4 +41,28 @@ class StoreController < ApplicationController
       format.js {}
     end
   end
+
+  def delivery
+    @categories = Category.all
+    count_in_cart
+  end
+
+  def about
+    @categories = Category.all
+    count_in_cart
+  end
+
+  def contact
+    @categories = Category.all
+    count_in_cart
+  end
+
+  private
+
+    def count_in_cart
+      if user_signed_in?
+        set_cart
+        @count_in_cart = @cart.products_orders.count
+      end
+    end
 end

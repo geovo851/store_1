@@ -17,8 +17,8 @@ deploy:
   run:
     - "rake db:reset"
     - "rake db:migrate"
+    - "rake db:seed"
     - restart
   on:
     branch: master
-    # all_branches: true
     rvm: 2.2.0

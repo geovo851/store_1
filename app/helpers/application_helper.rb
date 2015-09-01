@@ -13,4 +13,8 @@ module ApplicationHelper
       flash_type.to_s
     end
   end
+
+  def find_role_admin
+    User.select('role.title').joins(:role).where('role.title = admin')
+  end
 end

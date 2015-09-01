@@ -1,0 +1,44 @@
+<%= form_for @order, :html => { multipart: true, class: "form-horizontal" } do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+
+  <div class="form-group">
+    <%= f.label :user, class: "col-sm-1 control-label" %>
+    <div class="col-sm-4">
+      <%= f.collection_select(:user_id, @users, 
+                  :id, :email, {:prompt => 'Please select user'}, class: "form-control") %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :delivary_adress, class: "col-sm-1 control-label" %>
+    <div class="col-sm-4">
+      <%= f.text_area :delivary_adress, cols: 33, rows: 1, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :payment, class: "col-sm-1 control-label" %>
+    <div class="col-sm-4">
+      <%= f.collection_select(:payment_id, @payments, 
+                  :id, :type_of_paiment, {:prompt => 'Please select payment'}, class: "form-control") %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :status, class: "col-sm-1 control-label" %>
+    <div class="col-sm-4">
+      <%= f.text_field :status, size: 22, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-offset-3 col-sm-10">
+      <%= f.submit title_sumbit, class: "btn btn-primary"%>
+      <%= link_to 'Сancel', :back, class: "btn btn-default" %>
+    </div>
+  </div>
+
+<% end %>
+
+<div><%= button_to 'Back', orders_path, method: :get, class: "btn btn-default" %></div>
+

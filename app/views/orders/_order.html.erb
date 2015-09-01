@@ -1,0 +1,19 @@
+<tr>
+  <td><%= link_to order.id, order_path(order) %></td>
+  <td><%= link_to order.status, order_path(order) %></td>
+  <td><%= order.user.email if order.user %></td>
+  <td><%= order.payment.type_of_paiment if order.payment %></td>
+  <td><%= order.delivary_adress %></td>
+  <td><%= order.total_sum %>$</td>
+  <td>
+    <%= button_to 'Edit', edit_order_path(order),
+            method: :get, class: "btn btn-success btn-xs" %>
+  </td>
+  <td>
+    <%= button_to 'Delete', order_path(order),
+          method: :delete,
+          data: { confirm: 'Are you sure?' }, 
+          class: "btn btn-danger btn-xs" %>
+  </td>
+
+</tr>
