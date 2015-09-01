@@ -15,6 +15,6 @@ module ApplicationHelper
   end
 
   def find_role_admin
-    User.select('role.title').joins(:role).where('role.title = admin')
+    User.select('users.name, roles.title').joins(:role).where('roles.title = ?', 'admin').first
   end
 end

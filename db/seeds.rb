@@ -7,6 +7,29 @@ payments = Payment.create([
   {type_of_paiment: 'cash payment'}
 ]) if Payment.count == 0
 
+
+orders = Order.all
+orders.each do |o|
+  o.destroy
+end
+
+users = User.all
+users.each do |u|
+  u.destroy
+end
+
+products = Product.all
+products.each do |p|
+  p.destroy
+end
+
+categories = Category.all
+categories.each do |c|
+  c.destroy
+end
+
+
+
 categories = []
 categories << Category.create(category: "Monitors")
 categories << Category.create(category: "Processors")
