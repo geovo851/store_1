@@ -7,7 +7,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <div > <%= link_to root_path, id: "logo" do %>
+      <div> <%= link_to root_path, id: "logo" do %>
         <span class="glyphicon glyphicon-ok"></span>
           electronics store
         <% end %>
@@ -29,8 +29,11 @@
             <%= current_user.email %>
           </li>
           <% if @count_in_cart %>
-            <li class="">
-              <%= link_to "Cart: #{@count_in_cart}", store_cart_path(@cart) %>
+            <li>
+              <%= link_to store_cart_path(@cart) do %>
+                <span class="glyphicon glyphicon-shopping-cart"></span>
+                <%= "Cart: #{@count_in_cart}" %>
+              <% end %>
             </li>
           <% end %>
           
