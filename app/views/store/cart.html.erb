@@ -27,12 +27,15 @@
               </tr>
             </thead>
 
-            <% @cart.products_orders.each do |p| %>
+            <tbody>
+              <% @cart.products_orders.each do |p| %>
 
-              <tbody>
                 <tr class="info">
                   <td><%= p.product.name if p.product %></td>
-                  <td><%= p.quantity %></td>
+                  <td>
+                    <%= text_field_tag :quantity, p.quantity, size: 5,
+                        class: 'quantity', id: p.id %>
+                  </td>
                   <td><%= p.price %></td>
                   <td><%= p.quantity * p.price %></td>
                   <td>
@@ -42,9 +45,9 @@
                           class: "btn btn-primary btn-xs" %>
                   </td>
                 </tr>
-              </tbody>
-            <% end %>
 
+              <% end %>
+            </tbody>
           </table>
         </div>
       <% end %>

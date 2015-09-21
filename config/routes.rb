@@ -2,8 +2,10 @@ Rails.application.routes.draw do
   resources :deliveries, only: [:edit, :update]
   resources :orders
   resources :products_orders
+  post 'store/cart/update_quantity' => 'products_orders#update_quantity', 
+        as: 'cart_update_quantity'
+
   resources :carts
-  
   get 'carts' => 'orders#carts', as: 'orders_carts'
   
   resources :products

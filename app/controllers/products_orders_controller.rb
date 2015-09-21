@@ -98,6 +98,11 @@ class ProductsOrdersController < ApplicationController
     end
   end
 
+  def update_quantity
+    puts '-------------------------------------'
+    puts params
+  end
+
   def destroy
     if params[:order_id]
       @order = Order.find(params[:order_id])
