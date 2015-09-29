@@ -51,5 +51,7 @@ Rails.application.configure do
   #   authentication: :plain,
   #   domain: 'mail.google.com'
   # }
+
+   # config.consider_all_requests_local = false
 end
 
