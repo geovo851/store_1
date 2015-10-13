@@ -99,8 +99,11 @@ class ProductsOrdersController < ApplicationController
   end
 
   def update_quantity
-    puts '-------------------------------------'
-    puts params
+    products_order = ProductsOrder.find_by(id: params[:id])
+    products_order.quantity = params[:quantity].to_f
+    products_order.order.total_sum = params[:total_sum]
+    products_order.order.save
+    products_order.save
   end
 
   def destroy

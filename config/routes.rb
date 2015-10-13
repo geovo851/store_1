@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  get "/404", :to => "store#delivery"
-
   resources :deliveries, only: [:edit, :update]
   resources :orders
   resources :products_orders

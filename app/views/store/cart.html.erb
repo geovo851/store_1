@@ -52,7 +52,7 @@
         </div>
       <% end %>
 
-      <p>Total sum: <%= @cart.total_sum %></p>
+      <p>Total sum: <span id="cart-totalsum"><%= @cart.total_sum %></span></p>
       
       <p>
         <%= button_to 'Back', root_path, method: :get, class: "btn btn-default" %>
@@ -61,3 +61,31 @@
     </div>
   </div>
 </div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $(".quantity").change(function() {
+      var quantity = $(this).val();
+      var price = parseFloat($(this).parent().next().text());
+      var el_sum = $(this).parent().next().next();
+      var el_totalsum = $("#cart-totalsum");
+      var total_sum = parseFloat(el_totalsum.text()) - parseFloat(el_sum.text());
+
+      if (quantity <= 0) {
+        quantity = 1;
+        $(this).val(quantity);
+      }
+
+      var sum = (price * quantity).toFixed(2);
+
+      el_sum.text(sum);
+      total_sum = (total_sum + parseFloat(sum)).toFixed(2);
+      el_totalsum.text(total_sum);
+      $.ajax({
+             url: "/store/cart/update_quantity",
+             type: "POST",
+             data: {id: $(this).attr('id'), quantity: quantity, total_sum: total_sum}
+      });
+    });
+  });
+</script>
